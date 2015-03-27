@@ -1,0 +1,7 @@
+-main Main
+-cp ../haxelib/src
+-neko haxelib.n
+
+--next
+
+-cmd nekotools boot haxelib.n
