@@ -34,10 +34,11 @@ class Main {
 						
 						var homeDrive = Sys.getEnv ("HOMEDRIVE");
 						var homePath = Sys.getEnv ("HOMEPATH");
+						var configFile = null;
 						
 						if (homeDrive != null && homePath != null) {
 							
-							var configFile = homeDrive + homePath + "/.haxelib";
+							configFile = homeDrive + homePath + "/.haxelib";
 							
 						}
 						
@@ -60,20 +61,21 @@ class Main {
 					} else {
 						
 						var home = Sys.getEnv ("HOME");
+						var configFile = null;
 						
 						if (home != null) {
 							
-							var configFile = home + "/.haxelib";
+							configFile = home + "/.haxelib";
 							
-							if (configFile != null && FileSystem.exists (configFile) && !FileSystem.isDirectory (configFile)) {
-								
-								client = getHaxelibClient (File.getContent (configFile));
-								
-							} else if (FileSystem.exists ("/etc/.haxelib")) {
-								
-								client = getHaxelibClient (File.getContent ("/etc/.haxelib"));
-								
-							}
+						}
+						
+						if (configFile != null && FileSystem.exists (configFile) && !FileSystem.isDirectory (configFile)) {
+							
+							client = getHaxelibClient (File.getContent (configFile));
+							
+						} else if (FileSystem.exists ("/etc/.haxelib")) {
+							
+							client = getHaxelibClient (File.getContent ("/etc/.haxelib"));
 							
 						}
 						
